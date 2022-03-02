@@ -1,9 +1,6 @@
 import pyautogui
 import keyboard
-import time
 import win32api ,win32con
-import random
-
 
 Bitcoin = [229,131,31]
 Toicoin = [141,141,141]
