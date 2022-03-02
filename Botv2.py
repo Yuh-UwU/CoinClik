@@ -270,8 +270,8 @@ class BotCoinClick:
 def main():
     Bots = [
         #Bot2048,
-        #BotCoinFlip,
-        BotCoinClick,
+        BotCoinFlip,
+        BotCoinClick
         ]
     global GAME_NUM
     while True:
