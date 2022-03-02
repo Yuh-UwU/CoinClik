@@ -2,7 +2,6 @@ import os
 import random
 import time
 import datetime
-
 import cv2
 import keyboard
 import pyautogui
@@ -218,7 +217,6 @@ class BotCoinClick:
         self.start_img_path = "rc_items/coinclick_gameimg.png"
         self.game = "CoinClick"
 
-    
     def can_start(self):
         return check_image(self.start_img_path)
 
