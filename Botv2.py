@@ -93,31 +93,6 @@ def end_game():
     if check_image("rc_items/collect_pc.png"):
         click_image("rc_items/click_image")
 
-
-class Bot2048:
-    def __init__(self):
-        self.start_img_path = "rc_items/2048_gameimg.png"
-        self.available_moves = ["right", "left", "up", "down"]
-        self.game = "2048"
-
-    def can_start(self):
-        return check_image(self.start_img_path)
-
-    def play(self):
-        err = start_game(self.start_img_path)
-        if err:
-            return not err
-        start_game_msg(self.game)
-        self.run_game()
-        end_game()
-
-    def run_game(self):
-        while not check_image("rc_items/gain_power.png"):
-            for _ in range(4):
-                keyboard.press_and_release(random.choice(self.available_moves))
-                time.sleep(0.125)
-
-
 class BotCoinFlip:
     def __init__(self):
         self.start_img_path = "rc_items/coinflip_gameimg.png"
@@ -268,8 +243,7 @@ class BotCoinClick:
 def main():
     Bots = [
         BotCoinClick,
-        BotCoinFlip,
-        #Bot2048,
+        BotCoinFlip, 
         ]
     global GAME_NUM
     while True:
