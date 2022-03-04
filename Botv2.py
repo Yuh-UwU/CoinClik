@@ -8,7 +8,6 @@ import pyautogui
 import shutil
 from PIL import ImageGrab
 from MTM import matchTemplates
-from threading import Thread
 
 GAME_NUM = 0
 START_TIME = datetime.datetime.now()
@@ -17,12 +16,6 @@ START_TIME = datetime.datetime.now()
 def mouse_click(x, y, wait=0.1):
     pyautogui.click(x, y)
     time.sleep(wait)
-
-class ThreadWithReturnValue(Thread):
-    def __init__(self, group=None, target=None, name=None,
-                 args=(), kwargs={}, Verbose=None):
-        Thread.__init__(self, group, target, name, args, kwargs)
-        self._return = None    
 
 
 def screen_grab():
@@ -223,7 +216,6 @@ class BotCoinClick:
     def __init__(self):
         self.start_img_path = "rc_items/coinclick_gameimg.png"
         self.game = "CoinClick"
-        self.game_status = "idle"
 
     def can_start(self):
         return check_image(self.start_img_path)
@@ -237,21 +229,8 @@ class BotCoinClick:
         end_game()
         return True  
 
-    def run_game(self):
-        self.game_status = "running"
-
-        try:
-            thread = ThreadWithReturnValue(target=check_image,
-                                           args=("rc_items/gain_power.png", True, self,))
-            thread.start()
-        except:
-            print("Unable to start thread for checking image")
-            end_game(self, fail=True)
-
-        while self.game_status == "running":
-            if pyautogui.locateOnScreen("rc_items/gain_power_error.png", confidence=0.9):
-                self.game_status = "ended"
-                break
+    def run_game(self):     
+        while keyboard.is_pressed('ctrl+c') == False:
             pic = pyautogui.screenshot(region=(530, 370, 828, 417,))
             width, height = pic.size
             clicked = False
@@ -285,16 +264,11 @@ class BotCoinClick:
                         mouse_click(x + 535, y + 380, wait=0)
                         break
 
-                    if self.game_status == "ended":
-                        break
-                if self.game_status == "ended":
-                    break
-
                   
 def main():
     Bots = [
         #Bot2048,
-        #BotCoinFlip,
+        BotCoinFlip,
         BotCoinClick
         ]
     global GAME_NUM
