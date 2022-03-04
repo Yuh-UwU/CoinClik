@@ -223,7 +223,7 @@ class BotCoinClick:
     def play(self):
         err = start_game(self.start_img_path)
         if err:
-            return False
+            return not err
         start_game_msg(self.game)
         self.run_game()
         end_game()
@@ -267,9 +267,9 @@ class BotCoinClick:
                   
 def main():
     Bots = [
-        #Bot2048,
+        BotCoinClick,
         BotCoinFlip,
-        BotCoinClick
+        #Bot2048,
         ]
     global GAME_NUM
     while True:
