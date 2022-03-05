@@ -3,7 +3,6 @@ import time
 import datetime
 import cv2
 import keyboard
-from numpy import mat
 import pyautogui
 import shutil
 from PIL import ImageGrab
@@ -187,74 +186,10 @@ class BotCoinFlip:
                 mouse_click(c2[0] + c2[2] / 2, c2[1] + c2[3] / 2, wait=0.05)
                 time.sleep(1)
 
-class BotCoinClick:
-    def __init__(self):
-        self.start_img_path = "rc_items/coinclick_gameimg.png"
-        self.game = "CoinClick"
-        self.game_status = "idle"
 
-    def can_start(self):
-        return check_image(self.start_img_path)
-
-    def play(self):
-        err = start_game(self.start_img_path)
-        if err:
-            return not err
-        start_game_msg(self.game)
-        self.run_game()
-        end_game()
-        return True  
-
-    def run_game(self):     
-        self.game_status = "running"
-
-        while self.game_status == "running":
-            if pyautogui.locateOnScreen("rc_items/gain_power_error.png", confidence=0.9):
-                self.game_status = "ended"
-                break
-            pic = pyautogui.screenshot(region=(530, 370, 828, 417,))
-            width, height = pic.size
-            clicked = False
-            for x in range(0, width, 5):
-                if clicked:
-                    break
-                for y in range(0, height, 5):
-                    r, g, b = pic.getpixel((x, y))
-
-                    # blue coin
-                    if b == 183 and r == 0:
-                        mouse_click(x + 530, y + 380, wait=0)
-                        clicked = True
-                        break
-
-                    # yellow coin
-                    elif b == 64 and r == 200:
-                        clicked = True
-                        mouse_click(x + 530, y + 380, wait=0)
-                        break
-
-                    # orange coin
-                    elif b == 33 and r == 231:
-                        clicked = True
-                        mouse_click(x + 530, y + 380, wait=0)
-                        break
-
-                    # grey coin
-                    elif b == 230 and r == 230:
-                        clicked = True
-                        mouse_click(x + 535, y + 380, wait=0)
-                        break
-
-                    if self.game_status == "ended":
-                        break
-                if self.game_status == "ended":
-                    break
-        
-                  
 def main():
     Bots = [
-        BotCoinClick,
-        #BotCoinFlip, 
+        BotCoinFlip
         ]
     global GAME_NUM
     while True:
