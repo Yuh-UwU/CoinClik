@@ -204,39 +204,41 @@ class BotCoinClick:
         end_game()
         return True  
 
-    def run_game(self):     
-        while keyboard.is_pressed('ctrl+c') == False:
-            pic = pyautogui.screenshot(region=(530, 370, 828, 417,))
-            width, height = pic.size
-            clicked = False
-            for x in range(0, width, 5):
+    def run_game(self):
+        screen = cv2.imread(screen_grab())
+        clicked = False
+        for x in range(screen):
                 if clicked:
                     break
-                for y in range(0, height, 5):
-                    r, g, b = pic.getpixel((x, y))
+                for y in range(screen):
+                    r, b = ()
 
                     # blue coin
                     if b == 183 and r == 0:
-                        mouse_click(x + 530, y + 380, wait=0)
+                        screen
+                        mouse_click(x , y)
                         clicked = True
                         break
 
                     # yellow coin
                     elif b == 64 and r == 200:
+                        screen
                         clicked = True
-                        mouse_click(x + 530, y + 380, wait=0)
+                        mouse_click(x , y)
                         break
 
                     # orange coin
                     elif b == 33 and r == 231:
+                        screen
                         clicked = True
-                        mouse_click(x + 530, y + 380, wait=0)
+                        mouse_click(x , y)
                         break
 
                     # grey coin
                     elif b == 230 and r == 230:
+                        screen
                         clicked = True
-                        mouse_click(x + 535, y + 380, wait=0)
+                        mouse_click(x , y)
                         break
 
                   
