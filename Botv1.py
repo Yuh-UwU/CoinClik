@@ -22,22 +22,22 @@ while keyboard.is_pressed('q') == False:
         for y in range(0,height,15):
             r,g,b = (pic.getpixel((x,y)))
             #bitcoin
-            if r == 231 and b == 33:
+            if r == "rc_items/coinclick_btc.png" and b == 33:
                 achou = 1
                 click(x+536,y+360)
                 break
-            #toicoin
-            elif r == 230 and b == 230:
+            #litecoin
+            elif r == "rc_items/coinclick_lite.png" and b == 230:
                 achou = 2
                 click(x+536,y+360)
                 break
             #doge
-            elif r == 200 and b == 64:
+            elif r == "rc_items/coinclick_doge.png" and b == 64:
                 achou = 3
                 click(x+536,y+360)
                 break
-            #dudecoin
-            elif r == 0 and b == 183:
+            #dashecoin
+            elif r == "rc_items/coinclick.dash" and b == 183:
                 achou = 4
                 click(x+536,y+360)
                 break
